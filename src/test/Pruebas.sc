@@ -1,4 +1,6 @@
-import multiplicacion._
+import multiplicacion.*
+
+import scala.language.postfixOps
 
 
 // ============================================================
@@ -61,6 +63,15 @@ PeasantAlgorithmIt(1024, 1024) == PeasantAlgorithm(1024, 1024)
 PeasantAlgorithmIt(65535 , 65535) == PeasantAlgorithm(65535 , 65535)
 PeasantAlgorithmIt(5731, 32844361) == PeasantAlgorithm(5731, 32844361)
 
-splitMultiply(4, 12)
+
+// Desbordamiento de enteros
+splitMultiply(4, 12) == 4 * 12
+splitMultiply(1000, 12) == 1000 * 12
+splitMultiply(400, 2000) == 400 * 2000
+splitMultiply(3849040, 282382) == 3849040 * 282382
+splitMultiply(18882, 50000) == 18882 * 50000
+
+
+
 
 fastMultiply(4, 12)

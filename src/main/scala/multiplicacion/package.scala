@@ -43,12 +43,13 @@ package object multiplicacion {
       val yLow = y % pow_10_m
 
       //Recursión
-      val z0 = splitMultiply(xLow, yLow)
-      val z1 = splitMultiply(xLow + xHigh, yLow + yHigh)
       val z2 = splitMultiply(xHigh, yHigh)
+      val z1 = splitMultiply(xHigh, yLow)
+      val z0 = splitMultiply(xLow, yHigh)
+      val z3 = splitMultiply(xLow, yLow)
 
-      val middle = z1 - z2 - z0
-      val result = z2 * pow10_m2 + middle * pow_10_m + z0
+      val middle = z1 + z0
+      val result = z2 * pow10_m2 + middle * pow_10_m + z3
 
       result
     }
