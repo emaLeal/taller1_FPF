@@ -64,14 +64,90 @@ PeasantAlgorithmIt(65535 , 65535) == PeasantAlgorithm(65535 , 65535)
 PeasantAlgorithmIt(5731, 32844361) == PeasantAlgorithm(5731, 32844361)
 
 
-// Desbordamiento de enteros
-splitMultiply(4, 12) == 4 * 12
-splitMultiply(1000, 12) == 1000 * 12
-splitMultiply(400, 2000) == 400 * 2000
-splitMultiply(3849040, 282382) == 3849040 * 282382
-splitMultiply(18882, 50000) == 18882 * 50000
+// ============================================================
+// splitMultiply  (recursivo de árbol)
+// ============================================================
 
+// Base limite: 1 vs 2 dígitos — la frontera entre caso base y recursión
+splitMultiply(9, 9) == 9 * 9
+splitMultiply(10, 10) == 10 * 10
 
+// Digitos impares: m = n/2 no divide exacto (n=3,5,7)
+splitMultiply(123, 456) == 123 * 456
+splitMultiply(12345, 6789) == 12345 * 6789
+splitMultiply(1234567, 7654321) == 1234567 * 7654321
 
+// Ceros internos: la mitad baja puede quedar en 0
+splitMultiply(1001, 1001) == 1001 * 1001
+splitMultiply(101, 101) == 101 * 101
+splitMultiply(1005, 2005) == 1005 * 2005
 
-fastMultiply(4, 12)
+// Potencias de 10: xHigh puede quedar en 0 según el corte
+splitMultiply(1000, 1000) == 1000 * 1000
+splitMultiply(10000, 10000) == 10000 * 10000
+splitMultiply(10, 100) == 10 * 100
+
+// Desbalanceados: un operando con muchos menos dígitos
+splitMultiply(12345, 7) == 12345 * 7
+splitMultiply(7, 12345) == 7 * 12345
+splitMultiply(1234, 5) == 1234 * 5
+
+// Simetricos / 9s: peor caso para acarreos
+splitMultiply(9999, 9999) == 9999 * 9999
+splitMultiply(999999, 999999) == 999999 * 999999
+
+// Desborde de int: verifica semántica módulo 2^32
+splitMultiply(65535, 65535) == 65535 * 65535
+splitMultiply(46341, 46341) == 46341 * 46341
+splitMultiply(2147483647, 2147483647) == 2147483647 * 2147483647
+splitMultiply(2147483647, 1) == 2147483647 * 1
+
+// Encadenados: cuadrados palíndromos conocidos
+splitMultiply(11, 11) == 11 * 11
+splitMultiply(111, 111) == 111 * 111
+splitMultiply(1111, 1111) == 1111 * 1111
+splitMultiply(11111, 11111) == 11111 * 11111
+
+// ============================================================
+// FastMultiply  (iterativo logarítmico)
+// ============================================================
+
+// Base limite: 1 vs 2 dígitos — la frontera entre caso base y recursión
+fastMultiply(9, 9) == 9 * 9
+fastMultiply(10, 10) == 10 * 10
+
+// Digitos impares: m = n/2 no divide exacto (n=3,5,7)
+fastMultiply(123, 456) == 123 * 456
+fastMultiply(12345, 6789) == 12345 * 6789
+fastMultiply(1234567, 7654321) == 1234567 * 7654321
+
+// Ceros internos: la mitad baja puede quedar en 0
+fastMultiply(1001, 1001) == 1001 * 1001
+fastMultiply(101, 101) == 101 * 101
+fastMultiply(1005, 2005) == 1005 * 2005
+
+// Potencias de 10: xHigh puede quedar en 0 según el corte
+fastMultiply(1000, 1000) == 1000 * 1000
+fastMultiply(10000, 10000) == 10000 * 10000
+fastMultiply(10, 100) == 10 * 100
+
+// Desbalanceados: un operando con muchos menos dígitos
+fastMultiply(12345, 7) == 12345 * 7
+fastMultiply(7, 12345) == 7 * 12345
+fastMultiply(1234, 5) == 1234 * 5
+
+// Simetricos / 9s: peor caso para acarreos
+fastMultiply(9999, 9999) == 9999 * 9999
+fastMultiply(999999, 999999) == 999999 * 999999
+
+// Desborde de int: verifica semántica módulo 2^32
+fastMultiply(65535, 65535) == 65535 * 65535
+fastMultiply(46341, 46341) == 46341 * 46341
+fastMultiply(2147483647, 2147483647) == 2147483647 * 2147483647
+fastMultiply(2147483647, 1) == 2147483647 * 1
+
+// Encadenados: cuadrados palíndromos conocidos
+fastMultiply(11, 11) == 11 * 11
+fastMultiply(111, 111) == 111 * 111
+fastMultiply(1111, 1111) == 1111 * 1111
+fastMultiply(11111, 11111) == 11111 * 11111
